@@ -1,5 +1,5 @@
 //import javax.swing.JOptionPane;
-import Game.*;
+import game.*;
 public class App {
     public static void main(String[] args)  {
         

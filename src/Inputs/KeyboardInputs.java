@@ -1,8 +1,8 @@
-package Inputs;
+package inputs;
 
 import java.awt.event.KeyListener;
 
-import Game.GamePanel;
+import game.GamePanel;
 
 import java.awt.event.KeyEvent;
 
@@ -23,8 +23,8 @@ public class KeyboardInputs implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-       System.out.println("Hello");
-    //    gamePanel.move();
+    //    System.out.println("Hello");
+       gamePanel.move();
     }
 
     @Override

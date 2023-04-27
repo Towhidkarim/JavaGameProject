@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 public class MainGame implements Runnable{
     GamePanel gamePanel;
@@ -27,7 +27,6 @@ public class MainGame implements Runnable{
         while(true) {
             if(System.nanoTime() - lastTime >= frameTime) {
                 gamePanel.repaint();
-                gamePanel.x++;
                 lastTime = System.nanoTime();
 
             }
