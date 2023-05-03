@@ -56,6 +56,9 @@ public class Vector2 {
     public static double distance(Vector2 a,Vector2 b) {
         return new Vector2(a.x - b.x, a.y - b.y).magnitude();
     }
+    public static double sqDistance(Vector2 a, Vector2 b) {
+        return vectorDistance(a, b).sqrMagnitude();
+    }
 
     public static Vector2 vectorDistance(Vector2 a,Vector2 b) {
         return new Vector2(a.x - b.x, a.y - b.y);

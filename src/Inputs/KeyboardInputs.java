@@ -24,7 +24,6 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
     //    System.out.println("Hello");
-       gamePanel.move();
     }
 
     @Override
