@@ -23,19 +23,18 @@ public class GamePanel extends JPanel {
 
     int x = 200, y = 200;
     public Player player;
-    public Vector2 currentMousePos;
+    public Vector2 currentMousePos = new Vector2(0, 0);
     public ArrayList<Entity> entityList = new ArrayList<Entity>();
     public ArrayList<Entity> listBuffer = new ArrayList<Entity>();
 
     public GamePanel() {
         addKeyListener(new KeyboardInputs(this));
         addMouseMotionListener(new MouseInputs(this));
-        player = new Player(new Vector2(500, 500), 50 , Color.black, this);
+        player = new Player(new Vector2(500, 500), 75 , Color.BLACK, this);
         entityList.add(player);
         entityList.add(new Enemy(new Vector2(100, 100), 20, Color.blue, this));
         entityList.add(new Enemy(new Vector2(300, 100), 20, Color.blue, this));
         entityList.add(new Enemy(new Vector2(600, 400), 20, Color.blue, this));
-        //entityList.add(new Projectile(player.pos, new Vector2(-1, -1), 10, this));
 
     }
 

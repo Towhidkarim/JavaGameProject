@@ -9,7 +9,7 @@ import utils.Vector2;
 public class GameFrame {
     
     JFrame jframe;
-    public final Vector2 resolution = new Vector2(1280, 720);
+    public final Vector2 resolution = new Vector2(1600 , 900);
 
     public GameFrame(GamePanel gamePanel) {
         jframe = new JFrame("Survival");

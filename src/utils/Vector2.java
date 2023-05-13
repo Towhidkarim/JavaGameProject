@@ -11,6 +11,11 @@ public class Vector2 {
         this.x = x;
         this.y = y;
     }
+    public Vector2() {
+        this.x = 0;
+        this.y = 0;
+    }
+
 
     public double magnitude() {
         return Math.sqrt(x * x + y * y);
@@ -49,8 +54,8 @@ public class Vector2 {
         this.x /= a; this.y /= a;
     }
 
-    public static Vector2 dot(Vector2 a, Vector2 b) {
-        return new Vector2(a.x * b.x, a.y * b.y);
+    public static double dot(Vector2 a, Vector2 b) {
+        return a.x * b.x + a.y * b.y;
     }
 
     public static double distance(Vector2 a,Vector2 b) {
@@ -63,6 +68,15 @@ public class Vector2 {
     public static Vector2 vectorDistance(Vector2 a,Vector2 b) {
         return new Vector2(a.x - b.x, a.y - b.y);
     }
+    public static double vectorAngle(Vector2 a, Vector2 b) {
+        double dot = dot(a, b);
+        System.out.println(dot);
+        return Math.acos(dot / (a.magnitude() * b.magnitude()));
 
+    }
+
+    public static double angle(Vector2 a) {
+        return Math.acos(a.x / a.magnitude());
+    }
     
 }

@@ -10,8 +10,6 @@ public abstract class Entity {
     public Vector2 pos;
     public int radius = 0;
     public Color color;
-    public int moveX = 0;
-    public int moveY = 0;
     public boolean moving = false;
     GamePanel gamePanel;
     public String tagName = "default";
