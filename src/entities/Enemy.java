@@ -9,15 +9,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import game.GamePanel;
+import stats.EnemyStats;
 import utils.Taglist;
 import utils.Vector2;
 
 public class Enemy extends Entity {
     int count = 0;
+    public EnemyStats stats;
     private BufferedImage sprite;
 
     public Enemy(Vector2 pos, int radius, Color color, GamePanel gamePanel) {
         super(pos, radius, color, gamePanel);
+        stats = new EnemyStats(10);
         setTagName(Taglist.enemy);
         loadImage();
 
@@ -32,6 +35,11 @@ public class Enemy extends Entity {
     }
 
     public void update() {
+        if(stats.currentHealth <= 0) {
+            gamePanel.destroy(this);
+            gamePanel.player.stats.addScore(5);
+
+        }
         move(Vector2.vectorDistance(gamePanel.player.pos, pos).normalized());
     }
     public void render(Graphics g) {
@@ -40,11 +48,10 @@ public class Enemy extends Entity {
     
     @Override
     public void onCollisionEnter(Entity collidedObject) {
-        //if(collidedObject.tagName == "player")
-        if(collidedObject.tagName == Taglist.projectile)
-            gamePanel.destroy(this);
-            if(collidedObject.tagName == Taglist.enemy)
+        if(collidedObject.tagName == Taglist.projectile) {
+            stats.takeDamage(5);
             gamePanel.destroy(collidedObject);
+        }
         
     }
 }

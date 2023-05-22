@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import game.GamePanel;
+import stats.PlayerStats;
 import utils.Taglist;
 import utils.Vector2;
 
@@ -24,10 +25,12 @@ public class Player extends Entity {
     public Entity closestEnemy = null;
     private BufferedImage playerSprite;
     public int[][] weaponCoords = {{-75, 0}, {75, 0}};
+    public PlayerStats stats;
 
     public Player(Vector2 pos, int radius, Color color, GamePanel gamePanel) {
         super(pos, radius, color, gamePanel);
         importImg();
+        stats = new PlayerStats(100);
         gamePanel.instantiate(new Weapon(new Vector2(pos.x - 50, pos.y), 0, gamePanel));
         gamePanel.instantiate(new Weapon(new Vector2(pos.x + 50, pos.y), 1,  gamePanel));
         this.tagName = Taglist.player;
@@ -56,13 +59,13 @@ public class Player extends Entity {
         move(direction);
 
         size++;
-        if(size >30) {
-            Vector2 random = new Vector2((float)Math.random() * 1000,(float) Math.random() * 1000);
+        if(size >20) {
+            //Vector2 random = new Vector2((float)Math.random() * 1000,(float) Math.random() * 1000);
             //gamePanel.instantiate(new Projectile(pos,closestEnemy.pos, 20, gamePanel));
             //gamePanel.entityList.add(new Enemy(new Vector2((float)Math.random() * 500, (float)Math.random() * 500), 20, Color.BLUE, gamePanel));
             //gamePanel.entityList.add(new Projectile(pos,closestEnemy.pos.normalized(), 20, gamePanel));
-            gamePanel.instantiate(new Enemy(random, 30, Color.BLUE, gamePanel));
-            if(closestEnemy != null)
+            //gamePanel.instantiate(new Enemy(random, 30, Color.BLUE, gamePanel));
+            gamePanel.spawnEnemy();
            // gamePanel.instantiate(new Projectile2(pos, gamePanel));
             size = 0;
         }
@@ -95,5 +98,11 @@ public class Player extends Entity {
                 }
         }
         return enemyPos;
+    }
+
+    @Override
+    public void onCollisionEnter(Entity collidedObject) {
+        if(collidedObject.tagName == Taglist.enemy)
+            stats.takeDamage(0.25f);
     }
 }

@@ -1,7 +1,6 @@
 package game;
 
 import javax.swing.JPanel;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import entities.Enemy;
 import entities.Entity;
@@ -9,13 +8,13 @@ import entities.Player;
 import entities.Projectile;
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
+import ui.UiPlane;
 import utils.Vector2;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -26,15 +25,16 @@ public class GamePanel extends JPanel {
     public Vector2 currentMousePos = new Vector2(0, 0);
     public ArrayList<Entity> entityList = new ArrayList<Entity>();
     public ArrayList<Entity> listBuffer = new ArrayList<Entity>();
+    public UiPlane uiPlane;
 
     public GamePanel() {
         addKeyListener(new KeyboardInputs(this));
         addMouseMotionListener(new MouseInputs(this));
+        uiPlane = new UiPlane(this);
         player = new Player(new Vector2(500, 500), 75 , Color.BLACK, this);
         entityList.add(player);
         entityList.add(new Enemy(new Vector2(100, 100), 20, Color.blue, this));
-        entityList.add(new Enemy(new Vector2(300, 100), 20, Color.blue, this));
-        entityList.add(new Enemy(new Vector2(600, 400), 20, Color.blue, this));
+        
 
     }
 
@@ -76,6 +76,8 @@ public class GamePanel extends JPanel {
             checkCollision(current);
             current.render(graphics);
         }
+        uiPlane.update();
+        uiPlane.render(graphics);
     }
 
     public void instantiate(Entity object) {
@@ -87,6 +89,14 @@ public class GamePanel extends JPanel {
         entityList.remove(object);
     }
     
+    public void spawnEnemy() {
+        float x = (float) Math.random() * 1700;
+        float y = (float) Math.random() * 1000;
+        Vector2 newPos = new Vector2(x,y);
+        entityList.add(new Enemy(newPos, 30, getBackground(), this));
+    }
+
+
 }
 
     

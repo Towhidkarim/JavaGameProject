@@ -51,7 +51,7 @@ public class Weapon extends Entity {
         bulletSpawnPos.y += pos.y;
 
         counter++;
-        if(counter >= 60) {
+        if(counter >= 25) {
             targetPos = gamePanel.player.closestEnemy.pos;
             gamePanel.instantiate(new Projectile2(bulletSpawnPos, gamePanel));
             counter = 0;

@@ -54,7 +54,7 @@ public class Projectile2 extends Entity {
     public void update() {
         super.update();
         Vector2 v = targetDir.normalized();
-        v.multiply(15);
+        v.multiply(25);
         move(v);
         if(Vector2.vectorDistance(gamePanel.player.pos, new Vector2(0, 0)).sqrMagnitude() > 2000 * 2000)
         gamePanel.destroy(this);
@@ -62,8 +62,7 @@ public class Projectile2 extends Entity {
 
     public void onCollisionEnter(Entity collidedObject) {
         if(collidedObject.tagName == Taglist.enemy) {
-        gamePanel.destroy(this);
-        gamePanel.destroy(collidedObject);
+
         }
     }
     
